@@ -7,10 +7,10 @@ let doorHeightSlider, columnCountSlider, animationTierSlider;
 let statueModel;
 
 function preload() {
-  const url =
-    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/' +
-    'master/1.0/Duck/glTF-Binary/Duck.glb';
-  statueModel = loadModel(url, true);
+  const baseUrl =
+    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/models/obj/male02/';
+  const objUrl = baseUrl + 'male02.obj';
+  statueModel = loadModel(objUrl, true);
 }
 
 function setup() {
