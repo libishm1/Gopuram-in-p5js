@@ -1,5 +1,5 @@
 # Gopuram-in-p5js
-First sketch of a geometric model of a Dravidian gopuram style.
+Interactive sketch of a Dravidian gopuram rendered with p5.js.
 
 to be fixed _ 
 
@@ -9,4 +9,6 @@ Gopuram roof geometry to be resolved
 
 Archways and bump textures can be added 
 
-Statues can be populated
+GLB statues are loaded from the KhronosGroup sample models repository at
+runtime. The canvas automatically resizes to fill the browser window for
+better landscape support.

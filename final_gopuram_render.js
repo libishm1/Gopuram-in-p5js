@@ -4,9 +4,17 @@
 let scaleXSlider, scaleYSlider, scaleZSlider;
 let striationSlider, noiseIntensitySlider, baseScaleSlider;
 let doorHeightSlider, columnCountSlider, animationTierSlider;
+let statueModel;
+
+function preload() {
+  const url =
+    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/' +
+    'master/2.0/Lantern/glTF-Binary/Lantern.glb';
+  statueModel = loadModel(url, true);
+}
 
 function setup() {
-  createCanvas(800, 800, WEBGL);
+  createCanvas(windowWidth, windowHeight, WEBGL);
   angleMode(DEGREES);
   colorMode(RGB);
   noStroke();
@@ -214,6 +222,11 @@ function drawMiniShrines(w, h, d) {
     ambientMaterial(255, 200, 150);
     box(miniW, miniH, miniD);
     push();
+    scale(8);
+    rotateY(rot);
+    model(statueModel);
+    pop();
+    push();
     translate(0, miniH / 4, miniD / 2 + 1);
     rotateY(rot);
     ambientMaterial(100);
@@ -232,4 +245,8 @@ function getPanchavarnamColor(index) {
     color(153, 204, 255)
   ];
   return colors[index % colors.length];
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
