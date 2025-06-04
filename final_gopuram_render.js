@@ -9,7 +9,7 @@ let statueModel;
 function preload() {
   const url =
     'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/' +
-    'master/2.0/Lantern/glTF-Binary/Lantern.glb';
+    'master/1.0/Duck/glTF-Binary/Duck.glb';
   statueModel = loadModel(url, true);
 }
 
@@ -222,7 +222,7 @@ function drawMiniShrines(w, h, d) {
     ambientMaterial(255, 200, 150);
     box(miniW, miniH, miniD);
     push();
-    scale(8);
+    scale(6);
     rotateY(rot);
     model(statueModel);
     pop();

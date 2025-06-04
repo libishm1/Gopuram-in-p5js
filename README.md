@@ -9,6 +9,7 @@ Gopuram roof geometry to be resolved
 
 Archways and bump textures can be added 
 
-GLB statues are loaded from the KhronosGroup sample models repository at
-runtime. The canvas automatically resizes to fill the browser window for
-better landscape support.
+A GLB statue is loaded at runtime from the KhronosGroup sample models
+repository. Currently the Duck model is used as a placeholder. The canvas
+fills the browser window and prompts the user to rotate the screen for
+landscape viewing.
