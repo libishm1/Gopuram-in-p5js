@@ -13,3 +13,4 @@ A GLB statue is loaded at runtime from the KhronosGroup sample models
 repository. Currently the Duck model is used as a placeholder. The canvas
 fills the browser window and prompts the user to rotate the screen for
 landscape viewing.
+Ten ducks are displayed around the base of the gopuram.

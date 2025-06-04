@@ -103,6 +103,10 @@ function draw() {
 
   drawTopKalashas(gopuramTopY, scaleX);
   pop();
+
+  push();
+  drawDucks(baseW, baseD);
+  pop();
 }
 
 function drawTopKalashas(yTop, scaleX) {
@@ -222,11 +226,6 @@ function drawMiniShrines(w, h, d) {
     ambientMaterial(255, 200, 150);
     box(miniW, miniH, miniD);
     push();
-    scale(6);
-    rotateY(rot);
-    model(statueModel);
-    pop();
-    push();
     translate(0, miniH / 4, miniD / 2 + 1);
     rotateY(rot);
     ambientMaterial(100);
@@ -249,4 +248,18 @@ function getPanchavarnamColor(index) {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+}
+
+function drawDucks(baseW, baseD) {
+  const count = 10;
+  const radius = max(baseW, baseD) * 0.8;
+  for (let i = 0; i < count; i++) {
+    const angle = (i / count) * TWO_PI;
+    push();
+    translate(cos(angle) * radius, 0, sin(angle) * radius);
+    rotateY(-angle);
+    scale(6);
+    model(statueModel);
+    pop();
+  }
 }
