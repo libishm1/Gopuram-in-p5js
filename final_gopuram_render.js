@@ -4,19 +4,19 @@
 let scaleXSlider, scaleYSlider, scaleZSlider;
 let striationSlider, noiseIntensitySlider, baseScaleSlider;
 let doorHeightSlider, columnCountSlider, animationTierSlider;
-let ganeshaModel, muruganModel, natarajaModel;
+let shrineStatueModel, muruganModel, centralStatueModel;
 
 function preload() {
-  ganeshaModel = loadModel(
-    'https://huggingface.co/datasets/thibaudsculpt/hindu-scan-set/resolve/main/ganesha_standing_tiruvannamalai.glb',
+  shrineStatueModel = loadModel(
+    'https://raw.githubusercontent.com/libishm1/Gopuram-in-p5js/codex/add-gopuram-statues-glb-files-and-fix-textures/Sculpture1.obj',
     true
   );
   muruganModel = loadModel(
     'https://raw.githubusercontent.com/scan-the-world/india-temples/main/murugan_vel.obj',
     true
   );
-  natarajaModel = loadModel(
-    'https://huggingface.co/datasets/thibaudsculpt/hindu-scan-set/resolve/main/shiva_nataraja_bronze.glb',
+  centralStatueModel = loadModel(
+    'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/obj/cerberus/Cerberus.obj',
     true
   );
 }
@@ -250,12 +250,12 @@ function drawMiniShrines(w, h, d) {
 }
 
 function drawMiniShrineStatue() {
-  if (!ganeshaModel) return;
+  if (!shrineStatueModel) return;
   push();
   scale(0.03);
   rotateY(frameCount * 0.01);
   ambientMaterial(190, 170, 120);
-  model(ganeshaModel);
+  model(shrineStatueModel);
   pop();
 }
 
@@ -290,12 +290,12 @@ function drawBaseStatues(baseW, baseD) {
 }
 
 function drawCentralStatue(y) {
-  if (!natarajaModel) return;
+  if (!centralStatueModel) return;
   push();
   translate(0, y, 0);
   rotateY(frameCount * 0.02);
   scale(0.1);
-  model(natarajaModel);
+  model(centralStatueModel);
   pop();
 }
 

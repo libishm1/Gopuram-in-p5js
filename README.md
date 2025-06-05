@@ -9,6 +9,6 @@ Gopuram roof geometry to be resolved
 
 Archways and bump textures can be added 
 
-Statues now load from open CC repositories at runtime (Ganesha, Murugan and Nataraja). They are not stored in this repository.
-The canvas fills the browser window and hides in portrait orientation with a rotate prompt. Ten Murugan statues ring the base and each mini shrine holds a small Ganesha.
+Statues load at runtime from freely available OBJ models on the web.  A gate statue uses [Sculpture1.obj](https://github.com/libishm1/Gopuram-in-p5js/blob/codex/add-gopuram-statues-glb-files-and-fix-textures/Sculpture1.obj), and ten Murugan figures surround the base from Scan‑the‑World.
+The canvas fills the browser window and hides in portrait orientation with a rotate prompt.
 
