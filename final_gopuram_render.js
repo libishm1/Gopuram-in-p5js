@@ -8,15 +8,15 @@ let shrineStatueModel, muruganModel, centralStatueModel;
 
 function preload() {
   shrineStatueModel = loadModel(
-    'https://raw.githubusercontent.com/libishm1/Gopuram-in-p5js/codex/add-gopuram-statues-glb-files-and-fix-textures/Sculpture1.obj',
+    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb',
     true
   );
   muruganModel = loadModel(
-    'https://raw.githubusercontent.com/scan-the-world/india-temples/main/murugan_vel.obj',
+    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF-Binary/Lantern.glb',
     true
   );
   centralStatueModel = loadModel(
-    'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/obj/cerberus/Cerberus.obj',
+    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF-Binary/Avocado.glb',
     true
   );
 }
