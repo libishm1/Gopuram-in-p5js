@@ -4,9 +4,25 @@
 let scaleXSlider, scaleYSlider, scaleZSlider;
 let striationSlider, noiseIntensitySlider, baseScaleSlider;
 let doorHeightSlider, columnCountSlider, animationTierSlider;
+let shrineStatueModel, muruganModel, centralStatueModel;
+
+function preload() {
+  shrineStatueModel = loadModel(
+    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb',
+    true
+  );
+  muruganModel = loadModel(
+    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF-Binary/Lantern.glb',
+    true
+  );
+  centralStatueModel = loadModel(
+    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF-Binary/Avocado.glb',
+    true
+  );
+}
 
 function setup() {
-  createCanvas(800, 800, WEBGL);
+  createCanvas(windowWidth, windowHeight, WEBGL);
   angleMode(DEGREES);
   colorMode(RGB);
   noStroke();
@@ -32,6 +48,16 @@ function setup() {
 }
 
 function draw() {
+  if (windowHeight > windowWidth) {
+    resetMatrix();
+    background(200);
+    textAlign(CENTER, CENTER);
+    fill(50);
+    textSize(20);
+    text('Please rotate your device', width / 2, height / 2);
+    return;
+  }
+
   background(230);
   orbitControl();
   rotateX(-30);
@@ -94,6 +120,11 @@ function draw() {
   }
 
   drawTopKalashas(gopuramTopY, scaleX);
+  drawCentralStatue(gopuramTopY);
+  pop();
+
+  push();
+  drawBaseStatues(baseW, baseD);
   pop();
 }
 
@@ -214,6 +245,11 @@ function drawMiniShrines(w, h, d) {
     ambientMaterial(255, 200, 150);
     box(miniW, miniH, miniD);
     push();
+    translate(0, -miniH * 0.1, 0);
+    rotateY(rot);
+    drawMiniShrineStatue();
+    pop();
+    push();
     translate(0, miniH / 4, miniD / 2 + 1);
     rotateY(rot);
     ambientMaterial(100);
@@ -221,6 +257,16 @@ function drawMiniShrines(w, h, d) {
     pop();
     pop();
   }
+}
+
+function drawMiniShrineStatue() {
+  if (!shrineStatueModel) return;
+  push();
+  scale(0.03);
+  rotateY(frameCount * 0.01);
+  ambientMaterial(190, 170, 120);
+  model(shrineStatueModel);
+  pop();
 }
 
 function getPanchavarnamColor(index) {
@@ -233,3 +279,33 @@ function getPanchavarnamColor(index) {
   ];
   return colors[index % colors.length];
 }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+function drawBaseStatues(baseW, baseD) {
+  if (!muruganModel) return;
+  const count = 10;
+  const radius = max(baseW, baseD) * 0.8;
+  for (let i = 0; i < count; i++) {
+    const angle = (i / count) * TWO_PI;
+    push();
+    translate(cos(angle) * radius, 0, sin(angle) * radius);
+    rotateY(-angle);
+    scale(0.08);
+    model(muruganModel);
+    pop();
+  }
+}
+
+function drawCentralStatue(y) {
+  if (!centralStatueModel) return;
+  push();
+  translate(0, y, 0);
+  rotateY(frameCount * 0.02);
+  scale(0.1);
+  model(centralStatueModel);
+  pop();
+}
+
