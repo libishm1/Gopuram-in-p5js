@@ -9,7 +9,6 @@ Gopuram roof geometry to be resolved
 
 Archways and bump textures can be added 
 
-A textured OBJ model is loaded at runtime from the Three.js repository.
-The canvas fills the browser window and prompts the user to rotate the screen
-for landscape viewing. Ten statues are displayed around the base of the
-gopuram.
+Statues now load from open CC repositories at runtime (Ganesha, Murugan and Nataraja). They are not stored in this repository.
+The canvas fills the browser window and hides in portrait orientation with a rotate prompt. Ten Murugan statues ring the base and each mini shrine holds a small Ganesha.
+

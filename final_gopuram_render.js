@@ -4,13 +4,21 @@
 let scaleXSlider, scaleYSlider, scaleZSlider;
 let striationSlider, noiseIntensitySlider, baseScaleSlider;
 let doorHeightSlider, columnCountSlider, animationTierSlider;
-let statueModel;
+let ganeshaModel, muruganModel, natarajaModel;
 
 function preload() {
-  const baseUrl =
-    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/models/obj/male02/';
-  const objUrl = baseUrl + 'male02.obj';
-  statueModel = loadModel(objUrl, true);
+  ganeshaModel = loadModel(
+    'https://huggingface.co/datasets/thibaudsculpt/hindu-scan-set/resolve/main/ganesha_standing_tiruvannamalai.glb',
+    true
+  );
+  muruganModel = loadModel(
+    'https://raw.githubusercontent.com/scan-the-world/india-temples/main/murugan_vel.obj',
+    true
+  );
+  natarajaModel = loadModel(
+    'https://huggingface.co/datasets/thibaudsculpt/hindu-scan-set/resolve/main/shiva_nataraja_bronze.glb',
+    true
+  );
 }
 
 function setup() {
@@ -102,10 +110,11 @@ function draw() {
   }
 
   drawTopKalashas(gopuramTopY, scaleX);
+  drawCentralStatue(gopuramTopY);
   pop();
 
   push();
-  drawDucks(baseW, baseD);
+  drawBaseStatues(baseW, baseD);
   pop();
 }
 
@@ -226,6 +235,11 @@ function drawMiniShrines(w, h, d) {
     ambientMaterial(255, 200, 150);
     box(miniW, miniH, miniD);
     push();
+    translate(0, -miniH * 0.1, 0);
+    rotateY(rot);
+    drawMiniShrineStatue();
+    pop();
+    push();
     translate(0, miniH / 4, miniD / 2 + 1);
     rotateY(rot);
     ambientMaterial(100);
@@ -233,6 +247,16 @@ function drawMiniShrines(w, h, d) {
     pop();
     pop();
   }
+}
+
+function drawMiniShrineStatue() {
+  if (!ganeshaModel) return;
+  push();
+  scale(0.03);
+  rotateY(frameCount * 0.01);
+  ambientMaterial(190, 170, 120);
+  model(ganeshaModel);
+  pop();
 }
 
 function getPanchavarnamColor(index) {
@@ -250,7 +274,8 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-function drawDucks(baseW, baseD) {
+function drawBaseStatues(baseW, baseD) {
+  if (!muruganModel) return;
   const count = 10;
   const radius = max(baseW, baseD) * 0.8;
   for (let i = 0; i < count; i++) {
@@ -258,8 +283,19 @@ function drawDucks(baseW, baseD) {
     push();
     translate(cos(angle) * radius, 0, sin(angle) * radius);
     rotateY(-angle);
-    scale(6);
-    model(statueModel);
+    scale(0.08);
+    model(muruganModel);
     pop();
   }
 }
+
+function drawCentralStatue(y) {
+  if (!natarajaModel) return;
+  push();
+  translate(0, y, 0);
+  rotateY(frameCount * 0.02);
+  scale(0.1);
+  model(natarajaModel);
+  pop();
+}
+
