@@ -4,9 +4,25 @@
 let scaleXSlider, scaleYSlider, scaleZSlider;
 let striationSlider, noiseIntensitySlider, baseScaleSlider;
 let doorHeightSlider, columnCountSlider, animationTierSlider;
+let shrineStatueModel, muruganModel, centralStatueModel;
+
+function preload() {
+  shrineStatueModel = loadModel(
+    'https://raw.githubusercontent.com/libishm1/Gopuram-in-p5js/codex/add-gopuram-statues-glb-files-and-fix-textures/Sculpture1.obj',
+    true
+  );
+  muruganModel = loadModel(
+    'https://raw.githubusercontent.com/scan-the-world/india-temples/main/murugan_vel.obj',
+    true
+  );
+  centralStatueModel = loadModel(
+    'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/obj/cerberus/Cerberus.obj',
+    true
+  );
+}
 
 function setup() {
-  createCanvas(800, 800, WEBGL);
+  createCanvas(windowWidth, windowHeight, WEBGL);
   angleMode(DEGREES);
   colorMode(RGB);
   noStroke();
@@ -94,6 +110,11 @@ function draw() {
   }
 
   drawTopKalashas(gopuramTopY, scaleX);
+  drawCentralStatue(gopuramTopY);
+  pop();
+
+  push();
+  drawBaseStatues(baseW, baseD);
   pop();
 }
 
@@ -214,6 +235,11 @@ function drawMiniShrines(w, h, d) {
     ambientMaterial(255, 200, 150);
     box(miniW, miniH, miniD);
     push();
+    translate(0, -miniH * 0.1, 0);
+    rotateY(rot);
+    drawMiniShrineStatue();
+    pop();
+    push();
     translate(0, miniH / 4, miniD / 2 + 1);
     rotateY(rot);
     ambientMaterial(100);
@@ -221,6 +247,16 @@ function drawMiniShrines(w, h, d) {
     pop();
     pop();
   }
+}
+
+function drawMiniShrineStatue() {
+  if (!shrineStatueModel) return;
+  push();
+  scale(0.03);
+  rotateY(frameCount * 0.01);
+  ambientMaterial(190, 170, 120);
+  model(shrineStatueModel);
+  pop();
 }
 
 function getPanchavarnamColor(index) {
@@ -233,3 +269,33 @@ function getPanchavarnamColor(index) {
   ];
   return colors[index % colors.length];
 }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+function drawBaseStatues(baseW, baseD) {
+  if (!muruganModel) return;
+  const count = 10;
+  const radius = max(baseW, baseD) * 0.8;
+  for (let i = 0; i < count; i++) {
+    const angle = (i / count) * TWO_PI;
+    push();
+    translate(cos(angle) * radius, 0, sin(angle) * radius);
+    rotateY(-angle);
+    scale(0.08);
+    model(muruganModel);
+    pop();
+  }
+}
+
+function drawCentralStatue(y) {
+  if (!centralStatueModel) return;
+  push();
+  translate(0, y, 0);
+  rotateY(frameCount * 0.02);
+  scale(0.1);
+  model(centralStatueModel);
+  pop();
+}
+
