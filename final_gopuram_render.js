@@ -8,15 +8,15 @@ let shrineStatueModel, muruganModel, centralStatueModel;
 
 function preload() {
   shrineStatueModel = loadModel(
-    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb',
+    'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/obj/tree.obj',
     true
   );
   muruganModel = loadModel(
-    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF-Binary/Lantern.glb',
+    'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/obj/ninja/ninjaHead_Low.obj',
     true
   );
   centralStatueModel = loadModel(
-    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF-Binary/Avocado.glb',
+    'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/obj/walt/WaltHead.obj',
     true
   );
 }
